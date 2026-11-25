@@ -41,6 +41,7 @@ const plugins = {
   'spec-to-canvas@yra-skills-public': true,
   'canvas-to-app@yra-skills-public': true,
   'yra-extras@yra-skills-public': true,
+  'yravgbuilder@yra-skills-public': true,
 };
 
 let settings = {};

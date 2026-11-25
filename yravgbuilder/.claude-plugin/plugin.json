@@ -1,0 +1,8 @@
+{
+  "name": "yravgbuilder",
+  "version": "0.1.1",
+  "description": "House standard for building enterprise and business apps without slop: JS/TS UI on the yravg catalogue, Rust only for pure heavy cores, Tauri desktop, tastestack checks and one QA gate, run by /yravgbuilder-mode.",
+  "author": { "name": "Enrico D. Marlon" },
+  "license": "MIT",
+  "keywords": ["enterprise", "ui", "design-system", "anti-slop", "rust", "wasm", "tauri", "feature-delivery", "mode", "playbooks"]
+}

@@ -22,6 +22,7 @@ const linked = fs.readdirSync(skills);
 const target = (name) => fs.readlinkSync(path.join(skills, name));
 assert.equal(linked.includes('mattpo-mode'), false);
 assert.equal(linked.includes('mattpo-sync'), false);
+assert.ok(target('yravgbuilder-mode').includes(`${path.sep}yravgbuilder${path.sep}`));
 assert.ok(target('captureall-mode').includes(`${path.sep}captureall${path.sep}`));
 assert.ok(target('crawl-live').includes(`${path.sep}loose-skills${path.sep}`));
 for (const name of linked) assert.equal(target(name).includes(`${path.sep}mattpo${path.sep}`), false, name);
@@ -37,6 +38,7 @@ try {
   powershell = 'ran';
   const copied = fs.readdirSync(path.join(home, 'ps', '.claude/skills'));
   assert.equal(copied.includes('mattpo-mode'), false);
+  assert.equal(copied.includes('yravgbuilder-mode'), true);
   assert.equal(copied.includes('captureall-mode'), true);
   assert.equal(copied.includes('crawl-live'), true);
 } catch (error) {

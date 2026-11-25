@@ -12,6 +12,7 @@ Claude Code plugins and standalone skills by yravg.
 | `spec-to-canvas` | Turn a PRD or spec into a design canvas drawn on the real app. |
 | `canvas-to-app` | Build that canvas into the app, keeping the codebase architecture. |
 | `yra-extras` | `yra-sk-likepstack` and `yraverage-hub`. |
+| `yravgbuilder` | House standard for enterprise and business apps: catalogue UI, Rust only for heavy cores, Tauri desktop, one QA gate. |
 | `mattpo` | Pinned Matt Pocock engineering skills plus a yravg manager. The snapshot is MIT (Matt Pocock); the manager code is MIT (yravg). Not enabled by `setup.mjs`. |
 
 `loose-skills/skills/` holds standalone skills. Third-party skills in that folder ship with their own `LICENSE` file.

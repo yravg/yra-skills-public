@@ -35,6 +35,11 @@
       "description": "yra-sk-likepstack and yraverage-hub"
     },
     {
+      "name": "yravgbuilder",
+      "source": "./yravgbuilder",
+      "description": "House standard for enterprise and business apps: UI catalogue, Rust only for heavy cores, Tauri desktop, one QA gate"
+    },
+    {
       "name": "mattpo",
       "source": "./mattpo",
       "description": "Pinned Matt Pocock skills with a yravg manager. Install explicitly."
