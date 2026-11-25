@@ -1,0 +1,37 @@
+{
+  "upstreams": {
+    "impeccable": {
+      "repo": "pbakaus/impeccable",
+      "path": ".agent/skills/impeccable, LICENSE, NOTICE.md",
+      "ref": "main",
+      "sha": "c3bb418ee38ee49a6b999b7752c1368f3123a2bd",
+      "synced_at": "2026-11-07T23:07:27.700Z",
+      "licence": "Apache-2.0",
+      "license_sha256": {
+        "LICENSE": "fc0673369dae07c045c46869d3d4c9113678c77fcc7d3b4e3a39ac074cfa68b6"
+      }
+    },
+    "tastemaker": {
+      "repo": "Harrypatria/tastemaker",
+      "path": "skills, commands, agents, hooks/hooks.json, adapters/core-prompt.md, LICENSE",
+      "ref": "main",
+      "sha": "a9b94a5ff648564a9227b1a6a2069db82eedce3b",
+      "synced_at": "2026-11-07T23:07:27.700Z",
+      "licence": "MIT",
+      "license_sha256": {
+        "LICENSE": "7460ead4d80c8938d9eee08143185a088db66ff8aafa6c75db3d91759d261ef7"
+      }
+    },
+    "stageshow": {
+      "repo": "benjitaylor/skills",
+      "path": "stageshow",
+      "ref": "main",
+      "sha": "299140fafd08df55a9c234e610c3f64af3f45531",
+      "synced_at": "2026-11-07T23:07:27.700Z",
+      "licence": "MIT",
+      "license_sha256": {
+        "LICENSE": "f948862c8d317b6b3bbfbe5e7ea7648199443a9c0649de2dac338444676ff0d9"
+      }
+    }
+  }
+}

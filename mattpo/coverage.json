@@ -1,0 +1,129 @@
+{
+  "repo": "mattpocock/skills",
+  "ref": "main",
+  "pluginName": "mattpocock-skills",
+  "published": {
+    "skills/engineering/ask-matt": {
+      "disposition": "vendor-only",
+      "note": "Second router. mattpo-mode is the manager, so this skill is not registered."
+    },
+    "skills/engineering/code-review": {
+      "disposition": "expose",
+      "note": ""
+    },
+    "skills/engineering/codebase-design": {
+      "disposition": "expose",
+      "note": ""
+    },
+    "skills/engineering/diagnosing-bugs": {
+      "disposition": "expose",
+      "note": ""
+    },
+    "skills/engineering/domain-modeling": {
+      "disposition": "expose-held",
+      "note": "Upstream edits GLOSSARY.md and ADRs inline. Write those files when the user asks you to update them. Until then, show the hunk."
+    },
+    "skills/engineering/grill-with-docs": {
+      "disposition": "expose-held",
+      "note": "Upstream edits the glossary and ADRs as the interview goes. Write those files when the user asks. Ask one question, then wait."
+    },
+    "skills/engineering/implement": {
+      "disposition": "expose-held",
+      "note": "Upstream says to commit. Leave the work in the working tree until the user asks you to commit."
+    },
+    "skills/engineering/implement-spec": {
+      "disposition": "expose-held",
+      "note": "Upstream creates worktrees, merges, opens a pull request, and deletes worktrees. Implement in the current tree until the user asks for those git actions."
+    },
+    "skills/engineering/improve-codebase-architecture": {
+      "disposition": "expose-held",
+      "note": "Deliver the hotspot report and stop for a choice. Do not apply a refactor, and do not schedule a recurring pass, unless the user asks for that change."
+    },
+    "skills/engineering/pr": {
+      "disposition": "expose-held",
+      "note": "Write the pull request body in the reply. Open the pull request only when the user asks."
+    },
+    "skills/engineering/prototype": {
+      "disposition": "expose-held",
+      "note": "Keep a throwaway prototype in a scratch directory the user accepts. Commit it only when the user asks."
+    },
+    "skills/engineering/research": {
+      "disposition": "expose-held",
+      "note": "Put the cited notes in the reply, or in a path the user named."
+    },
+    "skills/engineering/retro": {
+      "disposition": "expose-held",
+      "note": "Propose one environment change. Do not edit agent config unless the user asks for that edit."
+    },
+    "skills/engineering/setup-matt-pocock-skills": {
+      "disposition": "expose-held",
+      "note": "Upstream writes tracker docs and can create labels. Show the draft and write it when the user asks. Do not run this because the plugin was installed."
+    },
+    "skills/engineering/tdd": {
+      "disposition": "expose",
+      "note": ""
+    },
+    "skills/engineering/to-spec": {
+      "disposition": "expose-held",
+      "note": "Upstream publishes the spec to the issue tracker. Write the spec in the reply, or in a file the user named, until they ask you to publish."
+    },
+    "skills/engineering/to-tickets": {
+      "disposition": "expose-held",
+      "note": "Upstream publishes tickets. Write the vertical slices locally until the user asks you to publish them."
+    },
+    "skills/engineering/triage": {
+      "disposition": "expose-held",
+      "note": "Upstream changes tracker labels and can close items. Confirm the tracker write before you do it."
+    },
+    "skills/engineering/wayfinder": {
+      "disposition": "expose-held",
+      "note": "Upstream stores the decision map on the issue tracker. Draft the map locally until the user asks you to publish it."
+    },
+    "skills/engineering/wizard": {
+      "disposition": "expose-held",
+      "note": "Show the wizard script. Do not run it."
+    },
+    "skills/productivity/grill-me": {
+      "disposition": "expose",
+      "note": ""
+    },
+    "skills/productivity/grilling": {
+      "disposition": "expose-held",
+      "note": "Upstream continues until every branch of the design tree is empty. Ask the single highest-impact question, then wait."
+    },
+    "skills/productivity/handoff": {
+      "disposition": "expose",
+      "note": ""
+    },
+    "skills/productivity/teach": {
+      "disposition": "expose",
+      "note": ""
+    },
+    "skills/productivity/to-questionnaire": {
+      "disposition": "expose-held",
+      "note": "Draft the questionnaire. Do not send it."
+    },
+    "skills/productivity/wait-what": {
+      "disposition": "expose",
+      "note": ""
+    },
+    "skills/productivity/writing-for-agents": {
+      "disposition": "expose-held",
+      "note": "Edit a steering file only when the user asked you to change that file."
+    }
+  },
+  "unpublished": [
+    "skills/in-progress/chief-of-staff",
+    "skills/in-progress/claude-handoff",
+    "skills/in-progress/loop-me",
+    "skills/in-progress/setup-ts-deep-modules",
+    "skills/in-progress/software-factory",
+    "skills/in-progress/writing-beats",
+    "skills/in-progress/writing-fragments",
+    "skills/in-progress/writing-shape",
+    "skills/misc/git-guardrails-claude-code",
+    "skills/misc/migrate-to-shoehorn",
+    "skills/misc/scaffold-exercises",
+    "skills/misc/setup-pre-commit"
+  ]
+}

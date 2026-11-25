@@ -1,0 +1,58 @@
+/* yravglive page layout. Colours and radii come only from the yravg UI tokens (ui/yravg-ui.css). */
+:root { color-scheme: light dark; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent: #EDEDED; --canvas: #121213; --danger: #E0745A; --ink: #EDEDED; --ink-dim: #8F8F8F;
+    --ink-faint: rgba(255,255,255,.4); --ink-off: rgba(255,255,255,.24); --line: #262628; --line-strong: #343437;
+    --ok: #4ADE80; --on-accent: #0A0A0A; --surface: #19191B; --track: #1F1F21; --warn: #E0A84A;
+  }
+}
+body { margin: 0; background: var(--canvas); color: var(--ink); font-family: var(--font); }
+.lv { max-width: 1240px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+.lv > * { min-width: 0; }
+.lv-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
+.lv-head h1 { font-size: 20px; margin: 0; }
+.lv-muted, .lv-head .lv-muted { color: var(--ink-dim); font-size: 13px; }
+.lv-stale { color: var(--warn); font-size: 13px; }
+.lv h2 { font-size: 15px; margin: 6px 0 0; }
+
+.lv-tree {
+  border-radius: var(--r-card); border: 1px solid var(--line); background-color: var(--surface);
+  background-image: radial-gradient(var(--ink-off) 1px, transparent 1px); background-size: 18px 18px;
+  padding: 24px 20px 32px; overflow-x: auto;
+}
+/* The feed carries no price: drop the separator the tree prints before the elapsed time. */
+.lv-tree .ui-agtc__amount:empty + .ui-agtc__time { display: inline-block; overflow: hidden; text-indent: -0.62em; vertical-align: bottom; }
+
+.lv-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); }
+.lv-card { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+
+.lv-facts {
+  border: 1px solid var(--line); border-radius: var(--r-card); background: var(--surface);
+  padding: 12px 14px; font-size: 13px; display: grid; gap: 8px; min-width: 0;
+}
+.lv-facts dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 3px 12px; margin: 0; }
+.lv-facts dt { color: var(--ink-dim); }
+.lv-facts dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.lv-facts code, .lv-facts pre { font-family: var(--mono); font-size: 12px; }
+.lv-commits { margin: 0; padding-left: 18px; }
+.lv-pr { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.lv-pr a { color: var(--ink); font-weight: 500; }
+.lv-jobs { display: flex; flex-wrap: wrap; gap: 4px; width: 100%; }
+.lv-pill, .lv-job { font-size: 12px; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--line-strong); white-space: nowrap; }
+.lv-pill--green, .lv-job--ok { color: var(--ok); border-color: currentColor; }
+.lv-pill--red, .lv-job--bad { color: var(--danger); border-color: currentColor; }
+.lv-pill--pending, .lv-job--wait { color: var(--warn); border-color: currentColor; }
+.lv-pill--merged { color: var(--ink-dim); }
+.lv-facts summary { cursor: pointer; color: var(--ink-dim); }
+.lv-facts pre {
+  margin: 8px 0 0; padding: 10px; border-radius: var(--r-input); background: var(--track);
+  max-height: 260px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere;
+}
+
+/* Shared small controls (parity heatmap kind switch, "show all", notes). */
+.lv-note { font-size: 13px; color: var(--ink-dim); }
+.lv-tree-btn { border: 1px solid var(--line); background: transparent; padding: 3px 10px; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer; color: var(--ink-dim); }
+.lv-tree-btn--active { background: var(--surface); color: var(--ink); border-color: var(--line-strong); }
+.lv-anim-btn { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); font: inherit; font-size: 12px; cursor: pointer; }
+.lv .ph h2 { font-size: 15px; margin: 6px 0 0; }

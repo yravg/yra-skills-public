@@ -1,0 +1,43 @@
+{
+  "name": "yra-skills-public",
+  "owner": {
+    "name": "yravg"
+  },
+  "plugins": [
+    {
+      "name": "captureall",
+      "source": "./captureall",
+      "description": "Capture a target website or app and turn it into an inventory, pack, parity plan, or rebuild"
+    },
+    {
+      "name": "tastestack",
+      "source": "./tastestack",
+      "description": "UI design quality toolkit (impeccable, tastemaker, stageshow)"
+    },
+    {
+      "name": "yravglive",
+      "source": "./yravglive",
+      "description": "Live page for headless agent workers in any repo"
+    },
+    {
+      "name": "spec-to-canvas",
+      "source": "./spec-to-canvas",
+      "description": "PRD or spec to a buildable design canvas drawn on the real app"
+    },
+    {
+      "name": "canvas-to-app",
+      "source": "./canvas-to-app",
+      "description": "Build a design canvas into the real app in one pass, keeping the codebase architecture"
+    },
+    {
+      "name": "yra-extras",
+      "source": "./yra-extras",
+      "description": "yra-sk-likepstack and yraverage-hub"
+    },
+    {
+      "name": "mattpo",
+      "source": "./mattpo",
+      "description": "Pinned Matt Pocock skills with a yravg manager. Install explicitly."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "captureall",
+  "version": "0.3.0",
+  "description": "Capture everything from a target website or app (pages, components, tokens, fonts, themes, states, motion, responsive, a11y, IA, code where public) and turn it into an inventory, a pack, a parity plan or a 100% reanimated rebuild proven by fingerprint and timeline matches, run by /captureall-mode.",
+  "author": {
+    "name": "Enrico D. Marlon"
+  },
+  "license": "MIT",
+  "keywords": [
+    "capture",
+    "scrape",
+    "design-system",
+    "ui-inventory",
+    "animation",
+    "parity",
+    "robo-capture",
+    "reanimate",
+    "port",
+    "match"
+  ]
+}

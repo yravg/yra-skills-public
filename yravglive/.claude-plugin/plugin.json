@@ -1,0 +1,17 @@
+{
+  "name": "yravglive",
+  "version": "0.3.0",
+  "description": "Live page for headless agent workers in any repo: yravg UI Agent Tree and Agent Monitor, refreshed every 5 s with status, tool steps, branch, commits, pull request and CI.",
+  "author": {
+    "name": "Enrico D. Marlon"
+  },
+  "license": "MIT",
+  "keywords": [
+    "live",
+    "workers",
+    "agents",
+    "opencode",
+    "monitor",
+    "yravg-ui"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "spec-to-canvas",
+  "version": "1.0.0",
+  "description": "PRD or spec to a buildable design canvas drawn on the real app: capture, matrix, NEW / PARTIAL markers with where, callout notes, optional Before / After, optional reference-UI snapshot strip, states with Entry and Data, screen and feature IDs, a canvas-states.json manifest for the build. Skills: spec-to-canvas, spec-to-canvas-nohtml (single static HTML), spec-to-canvas-html (interactive canvas). Building is the canvas-to-app plugin. Keeps a memory of lessons that grows every run. Was named canvas-to-app up to 0.6.0.",
+  "author": {
+    "name": "Enrico D. Marlon"
+  },
+  "license": "MIT"
+}

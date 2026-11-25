@@ -1,0 +1,9 @@
+{
+  "name": "canvas-to-app",
+  "version": "1.0.0",
+  "description": "Build any design canvas into the real app in one pass without errors, keeping the codebase's architecture: read the whole canvas into a canvas-states.json manifest, map the codebase, a contract per screen, gate baseline, test-first build screen by screen, State gate per board state, independent review. Shares the canvas memory with spec-to-canvas. Up to 0.6.0 this name was the drawing plugin, now spec-to-canvas.",
+  "author": {
+    "name": "Enrico D. Marlon"
+  },
+  "license": "MIT"
+}

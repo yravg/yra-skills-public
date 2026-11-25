@@ -1,0 +1,20 @@
+# Third-party notices
+
+This repository is MIT, Copyright (c) 2026 yravg, for the code written by yravg.
+Components below keep their own licenses. Those license files stay next to the code.
+
+## Plugins
+
+- `tastestack/vendor/impeccable` and the generated `tastestack/skills/impeccable` copy: Apache License 2.0. See `LICENSE` and `NOTICE.md` in those folders.
+- `tastestack/vendor/tastemaker` and the generated tastemaker skill copies: MIT, Copyright (c) 2026 Harry.
+- `tastestack/vendor/stageshow` and the generated stageshow skill copy: MIT, Copyright (c) 2026 Benji Taylor. Brand icon sets under `kit/brands/` keep `LICENSE-*.txt`.
+- `mattpo/vendor`: MIT, Copyright (c) 2026 Matt Pocock (`vendor/LICENSE`). Snapshot of https://github.com/mattpocock/skills at `abeeaf95660ba9e8b7c753eb38f441ca707a8823` (plugin version 1.3.2). `mattpo/skills/pr/CREDITS.md` keeps the Humanlayer / Dex Horthy credit. Exposed skills add a yravg header in front of the verbatim upstream body.
+- `mattpo` manager code (mode, help, sync, agent, scripts): MIT, Copyright (c) 2026 yravg.
+- `captureall` engine, crawler, and pack builder descend from the Robo Capture Chrome extension by Jay / RoboLabs (robonuggets.com), CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Keep that credit in outputs.
+- `yravglive` UI pieces ported from affectUI (https://github.com/flohoeller/affectui, commit 962b91f3d99179fd136afd0f22d2e6e1fe7c9aea): MIT, Copyright (c) 2026 Florian Höller (adfects). See `yravglive/skills/yravglive/THIRD_PARTY_NOTICES.md`. React and React DOM are MIT, Meta Platforms, Inc.
+
+## Loose skills with their own license files
+
+- `loose-skills/skills/humanizer-indonesia`: MIT, Copyright (c) 2026 Pribadi Mumpuni Adhi. https://github.com/adhiprib/humanizer-indonesia
+- `loose-skills/skills/reanimate`: MIT, Copyright (c) 2026 Niaz Morshed. https://github.com/NiazMorshed2007/reanimate
+- `loose-skills/skills/reverse-engineer-anything-self-learning-loop`: MIT, Copyright (c) 2026 Speedrun AI Labs Pty Ltd. https://github.com/Speedrunlab/reverse-engineer-anything-self-learning-loop

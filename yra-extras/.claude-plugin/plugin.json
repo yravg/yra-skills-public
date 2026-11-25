@@ -1,0 +1,9 @@
+{
+  "name": "yra-extras",
+  "version": "0.1.0",
+  "description": "Standalone yra skills: yra-sk-likepstack, yraverage-hub.",
+  "author": {
+    "name": "Enrico D. Marlon"
+  },
+  "license": "MIT"
+}

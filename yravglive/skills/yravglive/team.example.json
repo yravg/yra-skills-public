@@ -1,0 +1,8 @@
+{
+  "title": "Spekin live workers · IMP-43 to IMP-46",
+  "workers": [
+    { "id": "A", "title": "Spekin A", "model": "opencode-go/hy4", "cards": "IMP-43 → IMP-45", "worktree": "../Spekin-core", "log": "../worker-A.log", "branches": ["imp-43-skills-audit", "imp-45-door-and-offline"] },
+    { "id": "B", "title": "Spekin B", "model": "opencode-go/hy4", "cards": "IMP-44", "worktree": "../Spekin-ui", "log": "../worker-B.log", "branches": ["imp-44-stage-values"] },
+    { "id": "C", "title": "Spekin C", "model": "opencode-go/hy4", "cards": "IMP-46", "worktree": "../Spekin-w3", "log": "../worker-C.log", "branches": ["imp-46-sweep"] }
+  ]
+}

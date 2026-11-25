@@ -1,0 +1,17 @@
+{
+  "name": "mattpo",
+  "version": "0.1.1",
+  "description": "Pinned Matt Pocock engineering skills with a yravg manager. Run /mattpo:mattpo-mode. Not an official Matt Pocock plugin.",
+  "author": {
+    "name": "Enrico D. Marlon"
+  },
+  "license": "MIT",
+  "keywords": [
+    "matt-pocock",
+    "grilling",
+    "specs",
+    "review",
+    "tdd",
+    "mode"
+  ]
+}

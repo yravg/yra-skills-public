@@ -1,0 +1,7 @@
+.checkpoints/
+.last-check
+node_modules/
+mods-logs/
+*.log
+__pycache__/
+.venv/

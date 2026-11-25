@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Second Brain Demo</title>
+<link rel="stylesheet" href="second-brain.css">
+<style>
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font:14px 'Segoe UI',system-ui,sans-serif}
+  .app{display:grid;grid-template-columns:1fr 280px;height:100%}
+  #sb-host{position:relative;min-width:0}
+  .local-graph-pane{height:100%}
+  .detail{padding:12px 16px 0;font-size:12px;color:var(--dim)}
+  .detail b{color:var(--text)}
+  @media (max-width:700px){.app{grid-template-columns:1fr}.local-graph-pane{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div id="sb-host"></div>
+  <aside id="demo-pane" class="local-graph-pane">
+    <div class="detail">Selected: <b id="sel">—</b></div>
+    <div id="demo-block" class="local-graph-block">
+      <div class="sidebar-head">
+        <span class="sidebar-title">Local graph</span>
+        <span class="note-graph-meta"></span>
+        <button type="button" class="mini note-graph-float" title="Open in floating window">Float ⧉</button>
+      </div>
+      <div class="note-graph-docked">
+        <div class="note-graph-canvas-wrap"><canvas class="note-graph-canvas"></canvas></div>
+        <div class="note-graph-links"></div>
+        <div class="note-graph-tip">Notes · COP · WI · Letter · contract cites</div>
+      </div>
+      <div class="note-graph-floated-bar" hidden><span>Graph is floating</span><button type="button" class="mini note-graph-dock">Dock</button></div>
+    </div>
+  </aside>
+</div>
+<div id="float-layer"></div>
+
+<script src="second-brain.js"></script>
+<script src="local-graph.js"></script>
+<script>
+  // ----- sample dataset: an in-memory "vault" of wikilinked notes + live entities -----
+  const COLORS = { "10 Contract": "#6fb3ff", "20 Tables": "#8fd9e6", "30 Mechanisms & Risks": "#ff8a80", "50 Registers": "#7fd1a6", "80 WI": "#5ee0c8", "00 Meta": "#f1c453" };
+  const NOTES = {
+    "Home": { group: "00 Meta", links: ["Exhibit B", "Article 7", "Change Orders", "Pricing Rules"] },
+    "Exhibit B": { group: "10 Contract", links: ["Pricing Rules", "Table 1 Rates"] },
+    "Article 7": { group: "10 Contract", links: ["Change Orders"] },
+    "Change Orders": { group: "30 Mechanisms & Risks", links: ["Article 7", "Exhibit B"] },
+    "Pricing Rules": { group: "30 Mechanisms & Risks", links: ["Table 1 Rates"] },
+    "Table 1 Rates": { group: "20 Tables", links: [] },
+    "COP Register": { group: "50 Registers", links: ["Change Orders"] },
+  };
+  const LIVE = [
+    { id: "cop:COP-012", label: "COP-012", kind: "cop", group: "COPs", cites: ["Article 7", "Exhibit B"], wi: ["wi:WI-003"], letters: ["letter:OUT-045"] },
+    { id: "cop:COP-013", label: "COP-013", kind: "cop", group: "COPs", cites: ["Exhibit B"], wi: ["wi:WI-003"], letters: [] },
+    { id: "wi:WI-003", label: "WI-003", kind: "wi", group: "WIs", cites: ["Table 1 Rates"] },
+    { id: "letter:OUT-045", label: "OUT-045 Rate dispute", kind: "letter", group: "Letters out", cites: ["Article 7"] },
+    { id: "letter:IN-021", label: "IN-021 Client reply", kind: "letter", group: "Letters in", cites: ["Article 7"], cops: ["cop:COP-012"] },
+  ];
+  const byId = Object.fromEntries(LIVE.map(e => [e.id, e]));
+
+  function fullGraph() {
+    const nodes = [], edges = [], deg = {};
+    const add = (a, b) => { edges.push({ source: a, target: b }); deg[a] = (deg[a] || 0) + 1; deg[b] = (deg[b] || 0) + 1; };
+    for (const [name, n] of Object.entries(NOTES)) for (const l of n.links) if (NOTES[l]) add(name, l);
+    for (const e of LIVE) {
+      for (const c of e.cites || []) if (NOTES[c]) add(e.id, c);
+      for (const w of e.wi || []) add(e.id, w);
+      for (const l of e.letters || []) add(e.id, l);
+      for (const c of e.cops || []) add(e.id, c);
+    }
+    for (const [name, n] of Object.entries(NOTES)) nodes.push({ id: name, label: name, kind: "note", group: n.group, degree: deg[name] || 0, color: COLORS[n.group] });
+    for (const e of LIVE) nodes.push({ id: e.id, label: e.label, kind: e.kind, group: e.group, degree: deg[e.id] || 0 });
+    return { nodes, edges };
+  }
+  const FULL = fullGraph();
+
+  function localGraph(focus) {
+    const ids = new Set([focus]); const nodes = []; const edges = [];
+    for (const e of FULL.edges) {
+      if (e.source === focus) { ids.add(e.target); edges.push(e); }
+      else if (e.target === focus) { ids.add(e.source); edges.push(e); }
+    }
+    for (const n of FULL.nodes) if (ids.has(n.id) && n.id !== "Home") {
+      const out = edges.some(e => e.source === focus && e.target === n.id);
+      const inc = edges.some(e => e.target === focus && e.source === n.id);
+      nodes.push({ ...n, focus: n.id === focus, via: n.id === focus ? "focus" : out && inc ? "both" : out ? "out" : "in" });
+    }
+    nodes.sort((a, b) => (b.focus ? 1 : 0) - (a.focus ? 1 : 0));
+    return { focus, nodes, edges: edges.filter(e => e.source !== "Home" && e.target !== "Home") };
+  }
+
+  // ----- wire both views -----
+  const local = LocalGraph.create({
+    root: "#demo-block", pane: "#demo-pane", paneHide: false, layer: "project",
+    fetchGraph: async focus => localGraph(focus),
+    onOpen: open, colors: COLORS,
+    defaultTip: "Notes · COP · WI · Letter · contract cites", emptyText: "No linked items",
+  });
+  const sb = SecondBrain.mount(document.getElementById("sb-host"), { onOpen: open, onLayer: setLayer, onHubs: () => setLayer(currentLayer) },
+    { storageKey: "sbdemo", brand: "second brain", tagline: "demo workspace", layers: [{ id: "project", label: "Project" }, { id: "vault", label: "Vault" }] });
+  let currentLayer = "project";
+  function setLayer(layer) {
+    currentLayer = layer;
+    const nodes = layer === "vault" ? FULL.nodes.filter(n => n.kind === "note") : FULL.nodes;
+    const ids = new Set(nodes.map(n => n.id));
+    sb.setData({ nodes, edges: FULL.edges.filter(e => ids.has(e.source) && ids.has(e.target)), layer, projectLabel: "Notes demo", hint: layer === "vault" ? "notes only" : "COP · WI · letters · notes" });
+  }
+  function open(n) { document.getElementById("sel").textContent = n.label || n.id; local.show(n.id); }
+  setLayer("project"); sb.start(); open(FULL.nodes.find(n => n.id === "cop:COP-012"));
+
+  // ----- self-check (console): data contract + layout math -----
+  console.assert(FULL.nodes.length === 12 && FULL.edges.length > 10, "graph built");
+  console.assert(localGraph("cop:COP-012").nodes[0].focus === true, "focus first");
+  console.assert(sb.themes.length === 30, "30 themes");
+  console.log("demo self-check ok:", FULL.nodes.length, "nodes,", FULL.edges.length, "links");
+</script>
+</body>
+</html>

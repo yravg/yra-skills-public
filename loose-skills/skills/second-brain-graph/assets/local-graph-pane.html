@@ -1,0 +1,37 @@
+<!-- One entity tab = one .pane with left list, main detail, right Local graph.
+     Copy per tab; change the ids (cop-, letter-, wi-, note-…). Left panel optional.
+     LocalGraph.create({ root: "#wi-graph-block", pane: "#wi-graph-pane", ... })
+     SubPanel.init() once binds every ◀ / ▶ strip (click = collapse, drag = resize, width saved per pane id). -->
+<section id="tab-wi" class="pane">
+  <aside id="wi-sidebar" class="sub-panel sub-panel-left" data-default-w="340">
+    <div class="sidebar-head"><span class="sidebar-title">Work Instructions</span><button type="button" class="mini">↻</button></div>
+    <div id="wi-list"></div>
+  </aside>
+  <button type="button" class="pane-toggle pane-toggle-left" title="Drag to resize · click to collapse left panel" aria-expanded="true">◀</button>
+
+  <article id="wi-detail"><p class="hint">Select a WI on the left.</p></article>
+
+  <button type="button" class="pane-toggle pane-toggle-right" title="Drag to resize · click to collapse right panel" aria-expanded="true">▶</button>
+  <!-- starts .hidden; LocalGraph.show() removes it (paneHide default), hide() adds it back. The ▶ strip auto-hides with it. -->
+  <aside id="wi-graph-pane" class="local-graph-pane sub-panel sub-panel-right hidden" data-default-w="280" aria-label="Local graph">
+    <div id="wi-graph-block" class="local-graph-block">
+      <div class="sidebar-head">
+        <span class="sidebar-title">Local graph</span>
+        <span class="note-graph-meta"></span>
+        <button type="button" class="mini note-graph-float" title="Detach as floating window">Float ⧉</button>
+      </div>
+      <div class="note-graph-docked">
+        <div class="note-graph-canvas-wrap"><canvas class="note-graph-canvas"></canvas></div>
+        <div class="note-graph-links"></div>
+        <p class="hint note-graph-tip">WI · COP · Letter · contract cites</p>
+      </div>
+      <div class="note-graph-floated-bar" hidden>
+        <span class="hint">Detached as overlay</span>
+        <button type="button" class="mini note-graph-dock">Dock</button>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<!-- once per page, at the end of <body> -->
+<div id="float-layer"></div>

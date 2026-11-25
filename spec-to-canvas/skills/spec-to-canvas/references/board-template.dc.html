@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ID Board title</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+/* Tokens: replace with the app's real tokens (rule 3). Values below are the yraverageMilestone ones. */
+:root{--ground:#E7E9EF;--win:#FFFFFF;--side:#F3F4F8;--side-2:#ECEEF4;--bar:#F7F8FB;--line:#E2E5EC;--line-2:#D3D7E1;--text:#171B26;--muted:#545B6E;--dim:#7A8194;--navy:#212C5F;--navy-2:#2F3D80;--blue:#2F6FDE;--yellow:#FFC91B;--ok:#1E7B4E;--ok-soft:#E5F3EB;--warn:#8A5D00;--warn-soft:#FFF1D1;--amber:#C27A00;--sans:'Geist',system-ui,sans-serif;--mono:'Geist Mono',ui-monospace,monospace}
+body{margin:0}*{box-sizing:border-box}button{font:inherit;color:inherit;cursor:default}
+.board{width:1640px;height:1500px;padding:52px 56px;background:var(--ground);font-family:var(--sans);color:var(--text);font-size:13px;line-height:1.4;display:flex;flex-direction:column;gap:28px;overflow:hidden}
+.hd{display:flex;flex-direction:column;gap:8px}
+.hdt{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
+.ey{display:flex;align-items:center;gap:10px;font:500 11.5px/1 var(--mono);letter-spacing:.08em;color:var(--muted)}
+.tier{font:600 11px/1 var(--mono);letter-spacing:.08em;padding:5px 9px;border-radius:99px;background:var(--navy);color:#fff}
+.tier.ux{background:var(--yellow);color:var(--navy)}
+.ttl{margin:0;font-size:38px;line-height:44px;font-weight:600;letter-spacing:-.8px}
+.ext{font-size:14px;color:var(--muted)}.ext b{color:var(--text);font-weight:600}
+.vw{display:inline-flex;padding:2px;border-radius:8px;background:var(--side-2);gap:2px}
+.vw button{height:28px;padding:0 14px;border:0;border-radius:6px;background:transparent;font-size:12.5px;font-weight:500;color:var(--muted)}
+.vw button[aria-pressed="true"]{background:var(--win);color:var(--text);box-shadow:0 1px 2px rgba(23,27,38,.12)}
+.rw{display:flex;gap:36px;align-items:flex-start;flex:1;min-height:0}
+.win{width:1140px;flex:none;background:var(--win);border:1px solid var(--line-2);border-radius:12px;box-shadow:0 30px 70px -30px rgba(23,27,38,.45);overflow:hidden;position:relative;display:flex;flex-direction:column}
+.aside{width:388px;flex:none;display:flex;flex-direction:column;gap:18px}
+.card{background:var(--win);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.lbl{font:600 10.5px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.must{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:18px}
+.motion{display:flex;flex-direction:column;gap:7px;font-size:12.5px;line-height:17px}
+.motion .m{display:flex;gap:8px}.motion .m span:first-child{font:600 11px var(--mono);color:var(--navy-2);white-space:nowrap}
+.st{display:flex;flex-direction:column;gap:3px;border-top:1px solid var(--line);padding-top:8px}
+.sti{display:flex;align-items:center;gap:8px}
+.sid{font:600 11.5px var(--mono)}
+.src{font:600 10px/1 var(--mono);letter-spacing:.06em;padding:3px 6px;border-radius:5px;background:var(--side-2);color:var(--muted)}
+.stat{margin-left:auto;font:600 10.5px/1 var(--mono);padding:3px 7px;border-radius:99px}
+.stat.built{background:var(--ok-soft);color:var(--ok)}.stat.partial{background:var(--warn-soft);color:var(--warn)}.stat.new{background:var(--navy);color:#fff}
+.stt{font-size:12.5px;line-height:17px}
+.gap{font-size:12px;line-height:16px;color:var(--warn)}.gap b{color:#5E3F00}
+.where{display:flex;flex-direction:column;gap:6px;font-size:12.5px;line-height:17px}
+/* MARKERS (see references/board-anatomy.md) */
+.new{outline:2px solid var(--yellow);outline-offset:2px;border-radius:8px;position:relative}
+.newtag{position:absolute;top:-10px;left:8px;background:var(--yellow);color:var(--navy);font:700 9.5px/1 var(--mono);letter-spacing:.1em;padding:3px 6px;border-radius:99px;z-index:2}
+.part{outline:2px dashed var(--amber);outline-offset:2px;border-radius:8px;position:relative}
+.parttag{position:absolute;top:-10px;left:8px;background:var(--warn-soft);color:var(--warn);border:1px solid var(--amber);font:700 9.5px/1 var(--mono);letter-spacing:.1em;padding:2px 6px;border-radius:99px;z-index:2}
+.note{position:absolute;max-width:290px;background:var(--navy);color:#fff;font-size:11.5px;line-height:16px;padding:7px 10px;border-radius:8px;box-shadow:0 8px 20px -8px rgba(23,27,38,.5);z-index:3}
+.note b{color:var(--yellow);font-weight:600}
+.note.pn{border-left:4px solid var(--amber)}
+.latertag{margin-left:6px;background:var(--side-2);color:var(--muted);border:1px solid var(--line-2);font:700 9px/1 var(--mono);letter-spacing:.1em;padding:2px 5px;border-radius:99px}
+.states{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:12.5px;line-height:17px}
+</style>
+</helmet>
+<div class="board" data-screen="S00">
+  <div class="hd">
+    <div class="hdt">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="ey"><span class="tier">TIER 1</span><span>S00 · TIER 1 · CORE</span></div>
+        <h1 class="ttl">Board title</h1>
+        <div class="ext"><b>Extends:</b> existing screen or New (module) &#160;·&#160; <b>Lives in:</b> tab / menu path / route</div>
+      </div>
+      <!-- Include only when the user chose Before and After -->
+      <div class="vw" role="group" aria-label="Compare"><button type="button" data-state="before" aria-pressed="{{is_before}}" onClick="{{go_before}}">Before</button><button type="button" data-state="after" aria-pressed="{{is_after}}" onClick="{{go_after}}">After</button></div>
+    </div>
+  </div>
+  <div class="rw">
+    <div class="win">
+      <!-- real chrome slices + redrawn body. Example markers: -->
+      <!-- <div class="new" data-feature="F101"><span class="newtag">NEW</span> ... </div> -->
+      <!-- <div class="part" data-feature="F102"><span class="parttag">PARTIAL</span> ... </div> -->
+      <!-- <button data-does="Opens COP-014 in the COP page" data-feature="F101">Open</button> -->
+      <!-- <button data-later="Export the register to PDF" disabled>Export<span class="latertag">LATER</span></button> -->
+      <!-- <div class="note pn" style="left:16px;top:300px"><b>Exists:</b> Settings &gt; Export (src/export.ts). <b>Missing:</b> .mlq target.</div> -->
+      <!-- <div class="note" style="left:330px;top:880px"><b>Drop a file</b> on the window: it opens read-only in under 50 ms.</div> -->
+    </div>
+    <div class="aside">
+      <div class="card"><div class="lbl">What it must show</div><ul class="must"><li>Testable item</li></ul></div>
+      <div class="card"><div class="lbl">Motion</div><div class="motion"><div class="m"><span>Name</span><span>Behaviour, ms, spring</span></div><div class="m"><span>Reduce Motion</span><span>Cross-fade only.</span></div></div></div>
+      <div class="card"><div class="lbl">Stories</div>
+        <div class="st"><div class="sti"><span class="sid">F101</span><span class="src">SRC</span><span class="stat built">Built</span></div><div class="stt">Story line</div></div>
+        <div class="st"><div class="sti"><span class="sid">F102</span><span class="src">SRC</span><span class="stat partial">Partial</span></div><div class="stt">Story line</div><div class="gap"><b>Exists:</b> where. <b>Missing:</b> gap.</div></div>
+        <div class="st"><div class="sti"><span class="sid">F103</span><span class="src">SRC</span><span class="stat new">New</span></div><div class="stt">Story line</div></div>
+      </div>
+      <div class="card"><div class="lbl">Where it lives</div><div class="where"><span><b>Host/module:</b> menu path or route.</span></div></div>
+      <div class="card"><div class="lbl">States</div><ul class="states">
+        <li class="state" data-state="before"><b>Before</b> · <b>Entry:</b> today's app, same click path. · <b>Data:</b> screenshot of today's app.</li>
+        <li class="state" data-state="after"><b>After</b> · <b>Entry:</b> Projects &gt; Sample &gt; Tab. · <b>Data:</b> sample/sample-file.js → record.</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1640,"height":1500}}'>
+class Component extends DCLogic {
+state = { v: 'after' };
+renderVals() {
+const v = this.state.v;
+return { is_before: v === 'before', go_before: () => this.setState({ v: 'before' }), is_after: v === 'after', go_after: () => this.setState({ v: 'after' }) };
+}
+}
+</script>
+</body>
+</html>
